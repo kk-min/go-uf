@@ -24,6 +24,35 @@ func TestUnion(t *testing.T) {
 	}
 }
 
+func TestUnion2(t *testing.T) {
+	sets := CreateSets(5)
+	edges := [][]int{{0, 1}, {0, 2}, {3, 4}, {2, 3}}
+
+	for _, edge := range edges {
+		sets.Union(edge[0], edge[1])
+	}
+
+	for i := 0; i < 5; i++ {
+		if sets.FindSet(i) != 0 {
+			t.Error("Expected 0, got ", sets.FindSet(i))
+		}
+	}
+}
+
+func TestUnionLarge(t *testing.T) {
+	sets := CreateSets(10000)
+
+	for i := 0; i < 9999; i++ {
+		sets.Union(i, i+1)
+	}
+
+	for i := 0; i < 10000; i++ {
+		if sets.FindSet(i) != 0 {
+			t.Error("Expected 0, got ", sets.FindSet(i))
+		}
+	}
+}
+
 func TestFindSet(t *testing.T) {
 	sets := CreateSets(3)
 	sets.Union(0, 1)
