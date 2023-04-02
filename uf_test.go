@@ -66,6 +66,36 @@ func TestUnionSizeRanking(t *testing.T) {
 	}
 }
 
+func TestExample(t *testing.T) {
+
+	// Create 5 initial disjoint sets
+	sets := CreateSets(5)
+
+	// Union the sets based on edge (connection) information
+	edges := [][]int{{0, 1}, {2, 3}, {3, 4}}
+	for _, edge := range edges {
+		sets.Union(edge[0], edge[1])
+	}
+
+	// Get root (parent set) of a number
+	if sets.FindSet(0) != 0 {
+		t.Error("Expected 0, got ", sets.FindSet(0))
+	} // 0
+	if sets.FindSet(1) != 0 {
+		t.Error("Expected 0, got ", sets.FindSet(1))
+	} // 0
+	if sets.FindSet(2) != 2 {
+		t.Error("Expected 2, got ", sets.FindSet(2))
+	} // 2
+	if sets.FindSet(3) != 2 {
+		t.Error("Expected 2, got ", sets.FindSet(3))
+	} // 2
+	if sets.FindSet(4) != 2 {
+		t.Error("Expected 2, got ", sets.FindSet(4))
+	} // 2
+	t.Log(sets.parent)
+}
+
 func TestFindSet(t *testing.T) {
 	sets := CreateSets(3)
 	sets.Union(0, 1)

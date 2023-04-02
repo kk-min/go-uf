@@ -20,9 +20,9 @@ for _, edge := range edges {
 }
 
 // Get root (parent set) of a number
-uf.FindSet(0) // 0
-uf.FindSet(1) // 0
-uf.FindSet(2) // 2
-uf.FindSet(3) // 2
-uf.FindSet(4) // 2
+sets.FindSet(0) // 0
+sets.FindSet(1) // 0
+sets.FindSet(2) // 2
+sets.FindSet(3) // 2
+sets.FindSet(4) // 2
 ```
