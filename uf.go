@@ -1,10 +1,12 @@
 package uf
 
+// Union-Find data structure for disjoint sets. Internally holds an array of ancestors for member i at parent[i], and the size of set i at size[i].
 type UF struct {
 	parent []int
 	size   []int
 }
 
+// Creates n disjoint sets.
 func CreateSets(n int) UF {
 	parent := make([]int, n)
 	size := make([]int, n)
@@ -15,6 +17,7 @@ func CreateSets(n int) UF {
 	return UF{parent: parent, size: size}
 }
 
+// Finds the set that x belongs to.
 func (sets *UF) FindSet(x int) int {
 	if sets.parent[x] == x {
 		return x
@@ -23,6 +26,7 @@ func (sets *UF) FindSet(x int) int {
 	return sets.parent[x]
 }
 
+// Unions the sets that x and y belong to. Representative set after union is the set with the larger size.
 func (sets *UF) Union(x, y int) {
 	parentx := sets.FindSet(x)
 	parenty := sets.FindSet(y)
