@@ -12,7 +12,7 @@ func CreateSets(n int) UF {
 		parent[i] = i
 		size[i] = 1
 	}
-	return UF{parent: parent}
+	return UF{parent: parent, size: size}
 }
 
 func (sets *UF) FindSet(x int) int {
