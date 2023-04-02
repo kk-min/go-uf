@@ -53,6 +53,19 @@ func TestUnionLarge(t *testing.T) {
 	}
 }
 
+func TestUnionSizeRanking(t *testing.T) {
+	sets := CreateSets(6)
+	edges := [][]int{{0, 1}, {2, 3}, {2, 4}, {2, 5}, {0, 4}}
+
+	for _, edge := range edges {
+		sets.Union(edge[0], edge[1])
+	}
+
+	if sets.FindSet(0) != 2 {
+		t.Error("Expected 2, got ", sets.FindSet(0))
+	}
+}
+
 func TestFindSet(t *testing.T) {
 	sets := CreateSets(3)
 	sets.Union(0, 1)
