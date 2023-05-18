@@ -41,3 +41,14 @@ func (sets *UF) Union(x, y int) {
 		}
 	}
 }
+
+// Unions the sets that x and y, with x being the resulting representative set.
+func (sets *UF) UnionOrdered(x, y int) {
+	parentx := sets.FindSet(x)
+	parenty := sets.FindSet(y)
+
+	if parentx != parenty {
+		sets.parent[parenty] = parentx
+		sets.size[parentx] += sets.size[parenty]
+	}
+}
